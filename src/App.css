@@ -1,0 +1,30 @@
+.container {
+	max-width: 64rem;
+	margin: 0 auto;
+}
+.clips-grid {
+	display: grid;
+	row-gap: 27px;
+	column-gap: 20px;
+	grid-template-columns: repeat(4,minmax(0,1fr))
+}
+
+/* Clip Item */
+.clip-item {
+	border: 1px solid #ccc;
+}
+.clip-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.clip-item .views {
+	position: absolute;
+	bottom: 3px;
+}
+.clip-item .date {
+	position: absolute;
+	bottom: 3px;
+	right: 0px;
+}
+
