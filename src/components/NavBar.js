@@ -14,13 +14,9 @@ export default function NavBar({handleSearch}) {
 	return <header className="header mb-4">
 		<div className="container d-flex align-items-center justify-content-between">
 			<div className="d-flex align-items-center">
-				<h3 className={'logo'}>Kick Clips</h3>
+				<h3 className={'logo text-white fw-light letter-space-md'}><span className={'primary-text fw-normal'}>Kick</span> Clips</h3>
 			</div>
 
-			<div className="nav-links">
-				<a href={'/'} className={'fs-5 me-3 selected  link fw-semibold'}>Home</a>
-				<a href={'/favorites'} className={"fs-5 link text-white fw-semibold"}>Favorites</a>
-			</div>
 			<div className="actions">
 				<SearchBar handleSearch={handleSearch} />
 			</div>

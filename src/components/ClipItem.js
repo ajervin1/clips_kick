@@ -43,7 +43,8 @@ const clip = {
 	}
 }
 
-export default function ClipItem( { clip, handleCategory, handleChannel } ) {
+export default function ClipItem( { clip, handleCategory, handleChannel, sortOptions } ) {
+	const {sortBy, filterBy} = sortOptions
 	const date = formatDistance(new Date(clip.created_at), new Date(), { addSuffix: true });
 	return <article className="clip-item">
 			<div className="image-container position-relative">
@@ -57,13 +58,13 @@ export default function ClipItem( { clip, handleCategory, handleChannel } ) {
 				<div className="left d-flex align-items-center">
 					<div className="category-container h-100 me-4" style={ { width: '3rem', } }>
 						<img onClick={ () => {
-							handleCategory(clip.category.slug)
+							handleCategory(clip.category.slug, sortBy, filterBy )
 						} } className={ 'category-img' } src={ clip.category.responsive } alt=""/>
 					</div>
 					<div className="clip-info">
 						<h6 className={ 'title mb-2 fs-sm text-white' }>{ clip.title }</h6>
 						<h6 onClick={ () => {
-							handleChannel(clip.channel.slug)
+							handleChannel(clip.channel.slug, sortBy, filterBy)
 						} } className={ 'cursor-pointer username text-xs text-white fw-normal opacity-75 c' }>{ clip.channel.username }</h6>
 					</div>
 				</div>

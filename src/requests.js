@@ -22,7 +22,7 @@ export async function getPopularClips(  sort = "view", time = "month", cursor = 
 	return data;
 }
 
-export async function getClipsByChannel( channel, sort = 'view', time = "month", cursor = 0 ) {
+export async function getClipsByChannel( channel, sort = 'view', time = "all", cursor = 0 ) {
 	const { data } = await api.get(`/channels/${ channel }/clips`, {
 		params: {
 			cursor,
@@ -34,7 +34,7 @@ export async function getClipsByChannel( channel, sort = 'view', time = "month",
 }
 
 
-export async function getClipsByCategory( category,  sort = "view", time = "month", cursor = 0, ) {
+export async function getClipsByCategory( category,  sort = "view", time = "all", cursor = 0, ) {
 	const { data } = await api.get(`/categories/${ category }/clips`, {
 		params: {
 			cursor,
