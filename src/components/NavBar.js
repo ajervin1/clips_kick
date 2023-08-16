@@ -7,7 +7,6 @@ import SearchBar from "./SearchBar";
 
 export default function NavBar({handleSearch}) {
 	const dispatch = useDispatch();
-	const state = useSelector(state => state);
 
 
 

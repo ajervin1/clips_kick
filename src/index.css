@@ -42,7 +42,7 @@ body {
   cursor: pointer;
 }
  body, html {
-  height: 100%;
+
   background: var(--main-bg);
 }
 .container {

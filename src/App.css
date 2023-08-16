@@ -7,7 +7,12 @@ header .logo {
 	color: var(--primary-text);
 }
 /* SearchBar */
-
+#app {
+	height: 100vh;
+	overflow: auto;
+	background: blue;
+	
+}
 
 
 
@@ -53,7 +58,9 @@ header.header .selected.link {
 	display: grid;
 	row-gap: 27px;
 	column-gap: 20px;
-	grid-template-columns: repeat(4,minmax(0,1fr))
+	grid-template-columns: repeat(4,minmax(0,1fr));
+
+
 }
 .clip-item {
 	/*border: var(--primary-border);*/

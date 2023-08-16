@@ -42,7 +42,14 @@ const clip = {
 		"profile_picture": "https://files.kick.com/images/user/214230/profile_image/conversion/581eb803-2a55-4df3-9fb5-e2ef9d34561b-thumb.webp"
 	}
 }
-
+/*
+* clip - clip object that is being displayed, when this item is clicked the clip item will be passed
+* handleCategory - function that will get the category of the clip and requests clips based on this clips category
+* handleChannel - gets clips of the channel that was clicked
+* sortOptions - sortBy and filterBy are needed to passed to the above handlers to know what state the fitlers are in
+* handleSelect - function that fires when this item is clicked and sets the clicked clip to the selectedItem
+*
+* */
 export default function ClipItem( { clip, handleCategory, handleChannel, sortOptions, handleSelect } ) {
 	const {sortBy, filterBy} = sortOptions
 	const date = formatDistance(new Date(clip.created_at), new Date(), { addSuffix: true });
