@@ -121,8 +121,7 @@ function App() {
 
 
 	const handleLoadMore = async () => {
-		console.log(clips);
-		console.log(cursor)
+
 		// if ( queryType === 'channel' ) {
 		// 	await handleChannel(queryTerm, sortBy, filterBy, cursor)
 		// } else if ( queryType === 'category' ) {
