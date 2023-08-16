@@ -12,9 +12,12 @@ import HomePage from "./pages/HomePage";
 import SortOptions from "./components/SortOptions";
 import { setClips } from "./store";
 import NavBar from "./components/NavBar";
+import ClipItem from "./components/ClipItem";
 
 function App() {
 	const dispatch = useDispatch();
+	const state = useSelector(state => state.app.data);
+
 	async function getData() {
 
 	}
@@ -36,6 +39,14 @@ function App() {
 
 	return (<div id="app">
 			<NavBar />
+			<div className="container pt-5">
+				<section className="clips-grid">
+					{state.clips?.map(clip => {
+						return <ClipItem clip={clip} />
+					})}
+				</section>
+			</div>
+
 		</div>
 	);
 }

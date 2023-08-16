@@ -1,3 +1,6 @@
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+
+
 const clip =     {
 		"id": "clip_01H2G3FHQG4FVSCRD9D0MYNZ1Z",
 		"livestream_id": "3248895",
@@ -39,16 +42,28 @@ const clip =     {
 			"profile_picture": "https://files.kick.com/images/user/214230/profile_image/conversion/581eb803-2a55-4df3-9fb5-e2ef9d34561b-thumb.webp"
 		}
 	}
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
-export default function ClipItem() {
+export default function ClipItem({clip}) {
 	const date = formatDistance(new Date(clip.created_at), new Date(), {addSuffix: true});
 	return <article className="clip-item">
 		<div className="image-container position-relative">
-			<img src="" alt=""/>
-			<span className="views badge bg-primary">{clip.view_count}</span>
-			<span className="date badge bg-primary">{date}</span>
+			<img className={'clip-image'} src={clip.thumbnail_url} alt=""/>
+			<div className="meta-data">
+				<span className="views clip-badge fs-sm">{clip.view_count}</span>
+				<span className="date clip-badge fs-sm">{date}</span>
+			</div>
 		</div>
+		<div className="meta-data p-3">
+			<div className="left d-flex align-items-center">
+				<div className="category-container h-100 me-4" style={{width: '3rem',}}>
+					<img  className={'category-img'} src={clip.category.responsive} alt=""/>
+				</div>
+				<div className="clip-info">
+					<h6 className={'title mb-2 fs-sm text-white'}>{clip.title}</h6>
+					<h6 className={'username text-xs text-white fw-normal opacity-75'}>{clip.creator.username}</h6>
+				</div>
+			</div>
 
+		</div>
 	</article>
 }

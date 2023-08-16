@@ -24,6 +24,13 @@ header .logo {
 	font-weight: 500;
 	font-size: 15px;
 }
+
+.clip-badge {
+	background: rgba(0,0,0,.6);
+	padding: 0px 0.4rem;
+	border-radius: 0.2rem;
+	font-size: 1.3rem;
+}
 header.header .selected.link {
 	color: var(--primary-text);
 }
@@ -36,7 +43,7 @@ header.header .selected.link {
 	grid-template-columns: repeat(4,minmax(0,1fr))
 }
 .clip-item {
-	border: 1px solid #ccc;
+	/*border: var(--primary-border);*/
 }
 .clip-item img {
 	width: 100%;
@@ -45,11 +52,12 @@ header.header .selected.link {
 }
 .clip-item .views {
 	position: absolute;
-	bottom: 3px;
+	bottom: 5px;
+	left: 5px;
 }
 .clip-item .date {
 	position: absolute;
-	bottom: 3px;
-	right: 0px;
+	bottom: 5px;
+	right: 5px;
 }
 
