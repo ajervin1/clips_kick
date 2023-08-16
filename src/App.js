@@ -2,8 +2,8 @@ import { Route, Router, Routes, BrowserRouter } from 'react-router-dom'
 
 import './App.css';
 
-import { auth, db, firebase } from "./firestore";
-import { useEffect, useMemo } from "react";
+
+
 import { addPosts, addUser, getClipsByCategory, getClipsByChannel, getPopularClips } from "./requests";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,24 +13,37 @@ import SortOptions from "./components/SortOptions";
 import { setClips } from "./store";
 import NavBar from "./components/NavBar";
 import ClipItem from "./components/ClipItem";
-
+import { useEffect, useState } from "react";
 function App() {
+	const [ sortBy, setSortBy ] = useState('view');
+	const [ queryTerm, setQueryTerm ] = useState(null)
+	// Can be channel or category
+	const [ queryType, setQueryType ] = useState('popular')
 	const dispatch = useDispatch();
 	const state = useSelector(state => state.app.data);
-
-	async function handleChannel( channel ) {
-		const data = await getClipsByChannel(channel);
+	/* Event Handlers */
+	async function handleSearch( term ) {
+		const data = await getClipsByChannel(term);
 		const payload = {
 			clips: data.clips,
 			cursor: data.nextCursor
 		};
-
 		dispatch(setClips(payload))
 	}
-
+	async function handleChannel( channel, sortOption ) {
+		const data = await getClipsByChannel(channel, sortOption);
+		const payload = {
+			clips: data.clips,
+			cursor: data.nextCursor
+		};
+		setQueryTerm(channel)
+		setQueryType('channel');
+		dispatch(setClips(payload))
+	}
 	async function handleCategory( category ) {
 		const data = await getClipsByCategory(category);
-
+		setQueryTerm(category)
+		setQueryType('category')
 		const payload = {
 			clips: data.clips,
 			cursor: data.nextCursor
@@ -38,8 +51,23 @@ function App() {
 		dispatch(setClips(payload))
 	}
 
-	function handleSort( e ) {
-		console.log(e.target.value)
+	async function handleSort( e ) {
+
+		const sortValue = e.target.value
+		console.log(sortValue);
+		setSortBy(sortValue)
+		if ( queryType === 'channel' ){
+			await handleChannel(queryTerm, sortValue)
+		} else if (queryType === 'category'){
+			await handleCategory(queryTerm, sortValue)
+		} else if (queryType === 'popular'){
+			const data = await getPopularClips(sortValue);
+			const payload = {
+				clips: data.clips,
+				cursor: data.nextCursor
+			};
+			dispatch(setClips(payload))
+		}
 	}
 
 	useEffect(() => {
@@ -56,7 +84,11 @@ function App() {
 	}, [])
 
 	return (<div id="app">
-			<NavBar/>
+			<NavBar handleSearch={handleSearch} />
+			<div className="container">
+				<SortOptions handleSort={handleSort} />
+			</div>
+
 			<div className="container pt-5">
 				<section className="clips-grid">
 					{ state.clips?.map(clip => {

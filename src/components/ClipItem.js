@@ -1,6 +1,6 @@
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
-import {}from 'react-transition-group'; // ES6
+import {TransitionGroup}from 'react-transition-group'; // ES6
 const clip = {
 	"id": "clip_01H2G3FHQG4FVSCRD9D0MYNZ1Z",
 	"livestream_id": "3248895",
@@ -45,10 +45,7 @@ const clip = {
 
 export default function ClipItem( { clip, handleCategory, handleChannel } ) {
 	const date = formatDistance(new Date(clip.created_at), new Date(), { addSuffix: true });
-	return <ReactCSSTransitionGroup  transitionName="example"
-	                                 transitionEnterTimeout={500}
-	                                 transitionLeaveTimeout={300}>
-		<article className="clip-item">
+	return <article className="clip-item">
 			<div className="image-container position-relative">
 				<img className={ 'clip-image' } src={ clip.thumbnail_url } alt=""/>
 				<div className="meta-data">
@@ -73,6 +70,6 @@ export default function ClipItem( { clip, handleCategory, handleChannel } ) {
 
 			</div>
 		</article>
-	</ReactCSSTransitionGroup>
+
 
 }

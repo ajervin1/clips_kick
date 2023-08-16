@@ -10,8 +10,8 @@ const result = {
 	clips: [],
 	nextCursor: ""
 }
-
-export async function getPopularClips( cursor = 0, sort = "view", time = "month" ) {
+// view date like
+export async function getPopularClips(  sort = "view", time = "month", cursor = 0, ) {
 	const { data } = await api.get("/clips", {
 		params: {
 			cursor,
@@ -22,7 +22,7 @@ export async function getPopularClips( cursor = 0, sort = "view", time = "month"
 	return data;
 }
 
-export async function getClipsByChannel( channel, cursor = 0, sort = "view", time = "month" ) {
+export async function getClipsByChannel( channel, sort = 'view', time = "month", cursor = 0 ) {
 	const { data } = await api.get(`/channels/${ channel }/clips`, {
 		params: {
 			cursor,
@@ -34,7 +34,7 @@ export async function getClipsByChannel( channel, cursor = 0, sort = "view", tim
 }
 
 
-export async function getClipsByCategory( category, cursor = 0, sort = "view", time = "month" ) {
+export async function getClipsByCategory( category,  sort = "view", time = "month", cursor = 0, ) {
 	const { data } = await api.get(`/categories/${ category }/clips`, {
 		params: {
 			cursor,

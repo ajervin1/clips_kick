@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts, setUser, } from "../store";
 import Post from "../templates/Post";
 import axios from "axios";
-import NavBar from "../templates/NavBar";
 
 function HomePage() {
 
