@@ -12,17 +12,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-
 }
+
 * {
   box-sizing: border-box;
 }
+
 /* Custom Utility classes */
+.primary-border {
+  border: var(--primary-border);
+}
 .primary-text {
   color: var(--primary-text);
 }
 .letter-space-md {
   letter-spacing: 2px;
+}
+.letter-space-neg {
+  letter-spacing: 0px;
 }
 .fs-sm2{
   font-size: 1rem;

@@ -43,11 +43,11 @@ const clip = {
 	}
 }
 
-export default function ClipItem( { clip, handleCategory, handleChannel, sortOptions } ) {
+export default function ClipItem( { clip, handleCategory, handleChannel, sortOptions, handleSelect } ) {
 	const {sortBy, filterBy} = sortOptions
 	const date = formatDistance(new Date(clip.created_at), new Date(), { addSuffix: true });
 	return <article className="clip-item">
-			<div className="image-container position-relative">
+			<div className="image-container position-relative cursor-pointer" onClick={() => {handleSelect(clip)}}>
 				<img className={ 'clip-image' } src={ clip.thumbnail_url } alt=""/>
 				<div className="meta-data">
 					<span className="views clip-badge fs-sm">{ clip.view_count }</span>

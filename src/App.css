@@ -12,6 +12,19 @@ header .logo {
 
 
 /* Misc Items */
+.avatar-container {
+	width: 4rem;
+	height: 4rem;
+	border-radius: 9999px;
+	border-color: rgb(75, 85, 99);
+	border-width: 2px;
+	overflow: hidden;
+}
+.avatar-container img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
 .primary-button {
 	background: #772ce8;
 	color: white;
@@ -62,5 +75,13 @@ header.header .selected.link {
 	position: absolute;
 	bottom: 5px;
 	right: 5px;
+}
+/* Modal */
+.modal .modal-content{
+	background-color: rgb(15, 18, 20);
+}
+.modal video{
+	max-width: 100%;
+	height: auto;
 }
 

@@ -15,15 +15,24 @@ import NavBar from "./components/NavBar";
 import ClipItem from "./components/ClipItem";
 import { useEffect, useState } from "react";
 import FilterOptions from "./components/FilterOptions";
+import Modal from "./components/Modal";
 function App() {
+	const [ selectedClip, setSelectedClip ] = useState(null)
+	const [ queryTerm, setQueryTerm ] = useState(null)
+	const [ showModal, setShowModal ] = useState(false);
 	const [ sortBy, setSortBy ] = useState('view');
 	const [ filterBy, setFilterBy ] = useState('month')
-	const [ queryTerm, setQueryTerm ] = useState(null)
+
 	// Can be channel or category
 	const [ queryType, setQueryType ] = useState('popular')
 	const dispatch = useDispatch();
 	const state = useSelector(state => state.app.data);
 	/* Event Handlers */
+	async function handleSelect( clip ) {
+
+		setSelectedClip(clip);
+		toggleModal()
+	}
 	async function handleSearch( term ) {
 		const data = await getClipsByChannel(term);
 		const payload = {
@@ -51,6 +60,15 @@ function App() {
 			cursor: data.nextCursor
 		};
 		dispatch(setClips(payload))
+	}
+	function toggleModal(  ) {
+		setShowModal(!showModal);
+	}
+	function closeModal(  ) {
+		setShowModal(false)
+	}
+	function openModal(  ) {
+		setShowModal(true)
 	}
 	// Filters - Sorts
 	async function handleFilter( e ) {
@@ -102,21 +120,19 @@ function App() {
 	}, [])
 
 	return (<div id="app">
-
+			<Modal selectedClip={selectedClip} showModal={showModal} toggleModal={toggleModal} />
 			<NavBar handleSearch={handleSearch} />
 			<div className="container d-flex align-items-center justify-content-between">
 				<SortOptions handleSort={handleSort} />
 				<FilterOptions handleFilter={handleFilter} />
 			</div>
-
 			<div className="container pt-5">
 				<section className="clips-grid">
 					{ state.clips?.map(clip => {
-						return <ClipItem key={clip.id} sortOptions={{sortBy, filterBy}} handleChannel={ handleChannel } handleCategory={ handleCategory } clip={ clip }/>
+						return <ClipItem handleSelect={handleSelect}  key={clip.id} sortOptions={{sortBy, filterBy}} handleChannel={ handleChannel } handleCategory={ handleCategory } clip={ clip }/>
 					}) }
 				</section>
 			</div>
-
 		</div>
 	);
 }
