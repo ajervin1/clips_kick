@@ -45,6 +45,9 @@ header.header .selected.link {
 .clip-item {
 	/*border: var(--primary-border);*/
 }
+.clip-item .category-container {
+	cursor: pointer;
+}
 .clip-item img {
 	width: 100%;
 	height: 100%;
@@ -59,5 +62,23 @@ header.header .selected.link {
 	position: absolute;
 	bottom: 5px;
 	right: 5px;
+}
+
+.example-enter {
+	opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+	opacity: 1;
+	transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+	opacity: 1;
+}
+
+.example-leave.example-leave-active {
+	opacity: 0.01;
+	transition: opacity 300ms ease-in;
 }
 

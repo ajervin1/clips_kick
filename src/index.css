@@ -25,6 +25,9 @@ body {
   font-size: .80rem;
   line-height: 1rem;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
  body, html {
   height: 100%;
   background: var(--main-bg);

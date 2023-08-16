@@ -4,7 +4,7 @@ import './App.css';
 
 import { auth, db, firebase } from "./firestore";
 import { useEffect, useMemo } from "react";
-import { addPosts, addUser, getNowPlaying, getPopularClips } from "./requests";
+import { addPosts, addUser, getClipsByCategory, getClipsByChannel, getPopularClips } from "./requests";
 import { useDispatch, useSelector } from "react-redux";
 
 import axios from "axios";
@@ -18,15 +18,32 @@ function App() {
 	const dispatch = useDispatch();
 	const state = useSelector(state => state.app.data);
 
-	async function getData() {
+	async function handleChannel( channel ) {
+		const data = await getClipsByChannel(channel);
+		const payload = {
+			clips: data.clips,
+			cursor: data.nextCursor
+		};
 
+		dispatch(setClips(payload))
+	}
+
+	async function handleCategory( category ) {
+		const data = await getClipsByCategory(category);
+
+		const payload = {
+			clips: data.clips,
+			cursor: data.nextCursor
+		};
+		dispatch(setClips(payload))
 	}
 
 	function handleSort( e ) {
 		console.log(e.target.value)
 	}
-	useEffect( () => {
-		async function initCall(  ) {
+
+	useEffect(() => {
+		async function initCall() {
 			const data = await getPopularClips();
 			const payload = {
 				clips: data.clips,
@@ -34,16 +51,17 @@ function App() {
 			};
 			dispatch(setClips(payload))
 		}
+
 		initCall();
 	}, [])
 
 	return (<div id="app">
-			<NavBar />
+			<NavBar/>
 			<div className="container pt-5">
 				<section className="clips-grid">
-					{state.clips?.map(clip => {
-						return <ClipItem clip={clip} />
-					})}
+					{ state.clips?.map(clip => {
+						return <ClipItem key={clip.id} handleChannel={ handleChannel } handleCategory={ handleCategory } clip={ clip }/>
+					}) }
 				</section>
 			</div>
 
