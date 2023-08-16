@@ -11,7 +11,7 @@ const result = {
 	nextCursor: ""
 }
 
-export async function popularClips( cursor = 0, sort = "view", time = "all" ) {
+export async function getPopularClips( cursor = 0, sort = "view", time = "all" ) {
 	const { data } = await api.get("/clips", {
 		params: {
 			cursor,

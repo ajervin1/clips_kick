@@ -1,15 +1,40 @@
-.container {
-	max-width: 64rem;
-	margin: 0 auto;
+/* NavBar */
+.header {
+	background: #18181b;
+	padding: 1.5rem 0;
 }
+header .logo {
+	color: var(--primary-text);
+}
+/* SearchBar */
+
+
+
+
+/* Misc Items */
+.primary-button {
+	background: #772ce8;
+	color: white;
+	font-weight: 500;
+	font-size: 15px;
+}
+.secondary-button {
+	background: rgba(83,83,95,.48);
+	color: #efeff1;
+	font-weight: 500;
+	font-size: 15px;
+}
+header.header .selected.link {
+	color: var(--primary-text);
+}
+
+/* Clips */
 .clips-grid {
 	display: grid;
 	row-gap: 27px;
 	column-gap: 20px;
 	grid-template-columns: repeat(4,minmax(0,1fr))
 }
-
-/* Clip Item */
 .clip-item {
 	border: 1px solid #ccc;
 }

@@ -6,9 +6,9 @@ import { useEffect, useMemo } from "react";
 import { addPosts, addUser, getNowPlaying } from "../requests";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts, setUser, } from "../store";
-import Post from "../components/Post";
+import Post from "../templates/Post";
 import axios from "axios";
-import NavBar from "../components/NavBar";
+import NavBar from "../templates/NavBar";
 
 function HomePage() {
 

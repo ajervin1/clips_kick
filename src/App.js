@@ -4,32 +4,39 @@ import './App.css';
 
 import { auth, db, firebase } from "./firestore";
 import { useEffect, useMemo } from "react";
-import { addPosts, addUser, getNowPlaying } from "./requests";
+import { addPosts, addUser, getNowPlaying, getPopularClips } from "./requests";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts, setUser, } from "./store";
+
 import axios from "axios";
-import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
+import SortOptions from "./components/SortOptions";
+import { setClips } from "./store";
+import NavBar from "./components/NavBar";
 
 function App() {
-
+	const dispatch = useDispatch();
 	async function getData() {
 
 	}
 
-	useEffect(() => {
-		getData()
+	function handleSort( e ) {
+		console.log(e.target.value)
+	}
+	useEffect( () => {
+		async function initCall(  ) {
+			const data = await getPopularClips();
+			const payload = {
+				clips: data.clips,
+				cursor: data.nextCursor
+			};
+			dispatch(setClips(payload))
+		}
+		initCall();
 	}, [])
 
-	return (<BrowserRouter>
-			<NavBar/>
-			<div className="container">
-				<Routes>
-					<Route path={ '/' } element={ <HomePage/> }/>
-				</Routes>
-			</div>
-		</BrowserRouter>
-
+	return (<div id="app">
+			<NavBar />
+		</div>
 	);
 }
 

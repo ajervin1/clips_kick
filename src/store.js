@@ -1,17 +1,20 @@
-import {createSlice, configureStore} from '@reduxjs/toolkit'
+import { createSlice, configureStore } from '@reduxjs/toolkit'
+
 const appSlice = createSlice({
 	name: 'app',
 	initialState: {
-		posts: [],
-		user: null,
+		data: {
+			clip: [],
+			cursor: null
+		},
+
 	},
 	reducers: {
-		setUser: (state, action) => {
-			state.user = action.payload
-		},
-		clearPosts: state => state.posts = [],
-		setPosts: (state, action) => {
-			state.posts = action.payload;
+
+		clearClips: state => state.data = { clip: [], cursor: null },
+		// Always set cursor with clips
+		setClips: ( state, action ) => {
+			state.data = action.payload;
 		}
 	}
 });
@@ -21,7 +24,5 @@ const store = configureStore({
 	}
 });
 
-const {setPosts, clearPosts, setUser} = appSlice.actions;
-export {setPosts, clearPosts, setUser}
-
+export const { setClips, clearClips } = appSlice.actions;
 export default store

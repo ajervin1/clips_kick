@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import './Post.css'
+import '../components/Post.css'
 
 const post = {
 	adult: false,
